@@ -34,4 +34,10 @@ public class BulaVetCategoriaController
 				.map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
+	
+	@GetMapping("/nomecategoria/{nomeCategoria}")
+	public ResponseEntity<List<BulaVetCategoriaModel>> GetByNome(@PathVariable String nomeCategoria)
+	{
+		return ResponseEntity.ok(this.repository.findAllByNomeCategoriaContainingIgnoreCase(nomeCategoria));
+	}
 }
