@@ -32,4 +32,12 @@ public class BulaVetFarmacoController
 	{
 		return ResponseEntity.ok(this.repository.findAllByNomeFarmacoContainingIgnoreCase(nomeFarmaco));
 	}
+	
+	@GetMapping("/id/{idFarmaco}")
+	public ResponseEntity<BulaVetFarmacoModel> GetById(@PathVariable long idFarmaco)
+	{
+		return this.repository.findById(idFarmaco)
+				.map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.notFound().build());
+	}
 }
